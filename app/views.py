@@ -5,6 +5,14 @@ from .forms import UserRegisterForm, ContactForm
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import render,redirect,reverse
+from .forms import * 
+from .models import * 
+from django.db.models import Sum
+from django.contrib.auth.models import Group
+from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required, user_passes_test
+from datetime import datetime, timedelta, date
 
 from django.contrib.auth import get_user_model
 User = get_user_model()
@@ -40,3 +48,19 @@ def subjects(request):
     subjects = Subject.objects.all()
     context = {'subjects': subjects}
     return render(request, 'subjects.html', context)
+
+
+def teachers(request):
+    teachers = Teacher.objects.all()
+    context = {'teachers': teachers}
+    return render(request, 'teachers.html', context)
+
+def managers(request):
+    managers = Manager.objects.all()
+    context = {'managers': managers}
+    return render(request, 'managers.html', context)
+
+def etablissement(request):
+    etabs = Establishment.objects.all()
+    context = {'etabs': etabs}
+    return render(request, 'etabs.html', context)

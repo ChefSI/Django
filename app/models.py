@@ -38,6 +38,7 @@ class Teacher(models.Model):
     NNI = models.CharField(max_length=10)
     diplome = models.CharField(max_length=100)
     subject = models.ManyToManyField(Subject, related_name='subject')
+    module = models.CharField(max_length=20, null=True, blank=True)
     langue=models.CharField(max_length=100)
     status=models.BooleanField(default=False)
     
@@ -59,7 +60,8 @@ class Establishment(models.Model):
     mobile = models.CharField(max_length=20,null=True)
     status=models.BooleanField(default=False)
     email = models.EmailField(max_length=255)
-    subject = models.ManyToManyField(Subject, related_name='subject_demanded')
+    subject = models.ManyToManyField(Subject, related_name='subject_demanded',)
+    module = models.CharField(max_length=20, null=True, blank=True)
 
     def __str__(self):
         return self.name

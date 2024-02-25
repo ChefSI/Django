@@ -11,9 +11,9 @@
     <!--Font Link-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Open+Sans:wght@800&display=swap" rel="stylesheet">
-    <title> DRF Project </title>
+    <title> Python Project </title>
   </head>
-  <body style="background-image: url('https://wise.com/static-assets/app/_next/static/media/receive_section.0ac14889.jpeg');">
+  <body style="background-color: rgb(194, 201, 194);">
   {% load static %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="main-navbar">
         <div class="container">
@@ -25,11 +25,13 @@
             <div class="navbar-nav">
               <a class="nav-link active" href="/"> Home </a>
               <a class="nav-link active" href="{% url 'contact' %}"> Contact Us </a>
+              <a class="nav-link" href="{% url 'teachers' %}"> Teachers </a>
+              <a class="nav-link" href="{% url 'etabs' %}"> Etablissement </a>
             </div>
             <form class="d-flex" id="authstyle">
               {% if user.is_authenticated %}
               <div class="navbar-nav">
-                <a class="nav-link" href="{% url 'subjects' %}"> Subjects </a>
+                <a class="nav-link" href="{% url 'teachers' %}"> Ajout Etablissement </a>
               </div>
                 <a href="{% url 'logout' %}" class="btn" style="color: white; background-color: #fd5e14;"type="submit" id="header-links"> Logout </a>
               {% else %}
@@ -59,6 +61,6 @@
 
   </body>
   <footer class="bg-dark mb-5">
-    <p class="text-center text-white"> Formation Django & DRF, Master IG 2024</p>
+    <p class="text-center text-white"> Projet Python 2024</p>
   </footer>
 </html>

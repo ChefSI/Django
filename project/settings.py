@@ -121,9 +121,8 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
 LOGIN_REDIRECT_URL = 'home'
-
+ACCOUNT_LOGOUT_ON_GET = True
 LOGIN_URL = 'login'
 
 # Default primary key field type
