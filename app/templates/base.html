@@ -31,7 +31,7 @@
             <form class="d-flex" id="authstyle">
               {% if user.is_authenticated %}
               <div class="navbar-nav">
-                <a class="nav-link" href="{% url 'teachers' %}"> Ajout Etablissement </a>
+                <a class="nav-link" href="{% url 'add_etablissment' %}"> Ajout Etablissement </a>
               </div>
                 <a href="{% url 'logout' %}" class="btn" style="color: white; background-color: #fd5e14;"type="submit" id="header-links"> Logout </a>
               {% else %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{% load crispy_forms_tags %}
+<!--Contact form-->
+<div class="container text-center mt-3">
+    <div class="row justify-content-center">
+        <div class="col-6 shadow">
+            <div>
+                <h1>Add Teacher</h1>
+                <p> </p>
+                <form method="post">
+                    {% csrf_token %}
+                        {{user_form.first_name|as_crispy_field}}
+                        {{user_form.last_name|as_crispy_field}}
+                        {{user_form.username|as_crispy_field}}
+                        {{user_form.password|as_crispy_field}}
+                        {{user_form.email|as_crispy_field}}
+                        {{teacher_form.mobile|as_crispy_field}}
+                        {{teacher_form.NNI|as_crispy_field}}
+                        {{teacher_form.diplome|as_crispy_field}}
+                        {{teacher_form.subject|as_crispy_field}}
+                        {{teacher_form.module|as_crispy_field}}
+                        {{teacher_form.langue|as_crispy_field}}
+                        {{teacher_form.profile_pic|as_crispy_field}}
+                        <div class="form-group mt-3" id="signup-button">
+                            <button type="submit" class="btn">Add</button>
+                        </div> 
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

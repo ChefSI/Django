@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.core.mail import send_mail, BadHeaderError
-from .forms import UserRegisterForm, ContactForm
 from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render,redirect,reverse
+from django.shortcuts import render, redirect, reverse
+from django.contrib.auth.hashers import make_password
 from .forms import * 
 from .models import * 
 from django.db.models import Sum
@@ -50,17 +50,72 @@ def subjects(request):
     return render(request, 'subjects.html', context)
 
 
+def add_subject(request):
+    if request.method == 'POST':
+        form = SubjectForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('subjects')  
+    else:
+        form = SubjectForm()
+    return render(request, 'add_subject.html', {'form': form})
+
+def add_etablissment(request):
+    if request.method == 'POST':
+        form = EtabsForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('etabs')  
+    else:
+        form = EtabsForm()
+    return render(request, 'add_etab.html', {'form': form})
+
 def teachers(request):
     teachers = Teacher.objects.all()
     context = {'teachers': teachers}
     return render(request, 'teachers.html', context)
+
+def add_teacher(request):
+    if request.method == 'POST':
+        user_form = TeacherUserForm(request.POST)
+        teacher_form = TeacherForm(request.POST, request.FILES)
+        if user_form.is_valid() and teacher_form.is_valid():
+            user = user_form.save(commit=False)
+            user.password = make_password(user_form.cleaned_data['password']) 
+            user.save()
+            teacher = teacher_form.save(commit=False)
+            teacher.user = user
+            teacher.save()
+            return redirect('teachers') 
+    else:
+        user_form = TeacherUserForm()
+        teacher_form = TeacherForm()
+    return render(request, 'add_teacher.html', {'user_form': user_form, 'teacher_form': teacher_form})
 
 def managers(request):
     managers = Manager.objects.all()
     context = {'managers': managers}
     return render(request, 'managers.html', context)
 
+def add_manager(request):
+    if request.method == 'POST':
+        user_form = ManagerUserForm(request.POST)
+        manager_form = ManagerForm(request.POST, request.FILES)
+        if user_form.is_valid() and manager_form.is_valid():
+            user = user_form.save(commit=False)
+            user.password = make_password(user_form.cleaned_data['password']) 
+            user.save()
+            manager = manager_form.save(commit=False)
+            manager.user = user
+            manager.save()
+            return redirect('managers') 
+    else:
+        user_form = ManagerUserForm()
+        manager_form = ManagerForm()
+    return render(request, 'add_manager.html', {'user_form': user_form, 'manager_form': manager_form})
+
 def etablissement(request):
     etabs = Establishment.objects.all()
     context = {'etabs': etabs}
     return render(request, 'etabs.html', context)
+

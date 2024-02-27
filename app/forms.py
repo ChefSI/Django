@@ -18,30 +18,36 @@ class ContactForm(forms.Form):
 	email_address = forms.EmailField(max_length = 150)
 	message = forms.CharField(widget = forms.Textarea, max_length = 2000)
  
- #for manager related form
+
+class SubjectForm(forms.ModelForm):
+    class Meta:
+        model = Subject
+        fields = ['name', 'level', 'language']
+        
+class EtabsForm(forms.ModelForm):
+    class Meta:
+        model = Establishment
+        fields = ['manager', 'logo', 'name', 'address', 'mobile', 'email', 'subject', 'module']
+
+
 class ManagerUserForm(forms.ModelForm):
     class Meta:
-        model=User
-        fields=['first_name','last_name','username','password']
-        widgets = {
-            'password': forms.PasswordInput()
-        }
+        model = User
+        fields = ['first_name', 'last_name', 'username', 'email', 'password']
+
         
 class ManagerForm(forms.ModelForm):
     class Meta:
         model= Manager
-        fields=['email','mobile','status','profile_pic']
+        fields=['mobile', 'profile_pic']
 
 #for teacher related form
 class TeacherUserForm(forms.ModelForm):
     class Meta:
         model=User
-        fields=['first_name','last_name','username','password']
-        widgets = {
-            'password': forms.PasswordInput()
-        }
+        fields=['first_name', 'last_name', 'username', 'email', 'password']
         
 class TeacherForm(forms.ModelForm):
     class Meta:
         model= Teacher
-        fields=['email','mobile','NNI','profile_pic','diplome','subject','module','status']
+        fields=['mobile', 'NNI', 'profile_pic', 'diplome', 'subject', 'module', 'langue']

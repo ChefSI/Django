@@ -12,7 +12,7 @@
                     <table class="table table-bordered text-center justify-content-center" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Email</th>
+                                <th>Name</th>
                                 <th>Mobile</th>
                                 <th>Status</th>
                             </tr>
@@ -20,7 +20,7 @@
                         <tbody>
                             {% for manager in managers %}
                             <tr>
-                                <td>{{ manager.email }}</td>
+                                <td>{{ manager.get_name }}</td>
                                 <td>{{ manager.mobile }}</td>
                                 <td>{{ manager.status }}</td>
                             </tr>

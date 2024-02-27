@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 class Manager(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
     profile_pic= models.ImageField(upload_to='media/manager/', null=True, blank=True)
-    email = models.CharField(max_length=40, null=True, blank=True)
     mobile = models.CharField(max_length=20, null=True)
     status=models.BooleanField(default=False)
     
@@ -33,7 +32,6 @@ class Subject(models.Model):
 class Teacher(models.Model):
     user=models.OneToOneField(User, on_delete=models.CASCADE)
     profile_pic= models.ImageField(upload_to='media/teacher/', null=True, blank=True)
-    email = models.EmailField()
     mobile = models.CharField(max_length=20, null=True, blank=True)
     NNI = models.CharField(max_length=10)
     diplome = models.CharField(max_length=100)
